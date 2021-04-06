@@ -2,6 +2,9 @@ import java.util.HashMap;
 
 /**
  * @Desc 俩数之和
+ * 无序数组 hash查找
+ * 有序数组 二分查找 双指针 前后指针
+ * BST 遍历树 双指针
  * @Author yugongxia
  * @Date 2021/4/6 11:16
  * @Version 1.0
