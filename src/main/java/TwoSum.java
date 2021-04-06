@@ -1,16 +1,19 @@
+import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.Method;
+import java.lang.reflect.Proxy;
 import java.util.HashMap;
 
 /**
  * @Desc 俩数之和
  * 无序数组 hash查找
  * 有序数组 二分查找 双指针 前后指针
- * BST 遍历树 双指针
+ * BST 先序遍历树 双指针
  * @Author yugongxia
  * @Date 2021/4/6 11:16
  * @Version 1.0
  */
-public class TwoSum {
-
+public class TwoSum implements Sum{
+    @Override
     public int[] twoSum(int[] num, int target) {
         if (num == null || num.length == 0) {
             return new int[0];
@@ -33,8 +36,12 @@ public class TwoSum {
 
     public static void main(String[] args) {
         TwoSum twoSum = new TwoSum();
-        int[] num = new int[] {1,2,4,3,8};
-        int[] ints = twoSum.twoSum(num, 7);
+        final int[] num = new int[] {1,2,4,3,8};
+//        int[] ints = twoSum.twoSum(num, 7);
+
+        Sum o = (Sum) Proxy.newProxyInstance(twoSum.getClass().getClassLoader(), twoSum.getClass().getInterfaces(), new InvocationHandlerImpl(twoSum));
+
+        int[] ints = o.twoSum(num, 7);
         for (int anInt : ints) {
             System.out.println(anInt);
         }
